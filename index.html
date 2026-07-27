@@ -231,8 +231,27 @@
   }
 
   /* PROBLEM */
-  .problem-content {
-    max-width: 700px;
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .problem-img-placeholder {
+    background: #e4e4e2;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .problem h2 {
@@ -504,6 +523,9 @@
   /* WARNING */
   .warning-content {
     max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
 
   .warning h2 { font-size: 30px; margin-bottom: 20px; }
@@ -579,6 +601,7 @@
 
     .hero-grid { grid-template-columns: 1fr; }
     .hero-img-placeholder { order: -1; }
+    .problem-grid { grid-template-columns: 1fr; }
     .solution-grid { grid-template-columns: 1fr; }
     .cred-grid { grid-template-columns: repeat(2, 1fr); }
     .benefits-grid { grid-template-columns: repeat(2, 1fr); }
@@ -658,12 +681,17 @@
 </section>
 
 <section class="problem">
-  <div class="wrap problem-content">
-    <p class="eyebrow">Poznata situacija</p>
-    <h2>Auto ti se pokvario dan pre poslovnog puta</h2>
-    <p>Sedneš za volan, upališ, i ništa. Servis kaže tri dana. A ti sutra imaš sastanak u drugom gradu, ili gost sleće na aerodron i treba da ga preuzmeš.</p>
-    <p>Otvoriš Google, ukucaš "rent a car Kragujevac" i dobiješ desetine rezultata. Zoveš jednog, kaže da auto nije slobodan. Zoveš drugog, kaže da moraš lično da dođeš po njega na drugi kraj grada, taman kad ti vreme najviše fali.</p>
-    <p>Treći ti pošalje cenovnik pun sitnih slova o depozitu, gorivu i kilometraži, pa ne znaš na kraju koliko zapravo plaćaš.</p>
+  <div class="wrap problem-grid">
+    <div class="problem-img-placeholder" role="img" aria-label="Fotografija pokvarenog vozila ispred zgrade">
+      FOTOGRAFIJA POKVARENOG VOZILA
+    </div>
+    <div class="problem-content">
+      <p class="eyebrow">Poznata situacija</p>
+      <h2>Auto ti se pokvario dan pre poslovnog puta</h2>
+      <p>Sedneš za volan, upališ, i ništa. Servis kaže tri dana. A ti sutra imaš sastanak u drugom gradu, ili gost sleće na aerodron i treba da ga preuzmeš.</p>
+      <p>Otvoriš Google, ukucaš "rent a car Kragujevac" i dobiješ desetine rezultata. Zoveš jednog, kaže da auto nije slobodan. Zoveš drugog, kaže da moraš lično da dođeš po njega na drugi kraj grada, taman kad ti vreme najviše fali.</p>
+      <p>Treći ti pošalje cenovnik pun sitnih slova o depozitu, gorivu i kilometraži, pa ne znaš na kraju koliko zapravo plaćaš.</p>
+    </div>
   </div>
 </section>
 
