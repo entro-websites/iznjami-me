@@ -270,9 +270,7 @@
     font-weight: 800;
     color: #fff;
     margin-bottom: 24px;
-    max-width: 16ch;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: none;
   }
 
   .hero h1 .accent { color: var(--accent); display: block; }
@@ -433,25 +431,30 @@
   /* ---------- PROBLEM + REŠENJE ---------- */
   .story { background: var(--bg); }
 
-  .story-row {
+  .story-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 64px;
-    align-items: center;
+    align-items: start;
   }
 
-  .story-row .placeholder { min-height: 400px; height: 100%; }
+  .story-title h2 { font-size: 40px; font-weight: 800; }
+
+  .story-rule {
+    display: block;
+    width: 64px;
+    height: 2px;
+    background: var(--accent);
+    margin-top: 32px;
+  }
+
+  .story-text p { color: var(--muted); margin-bottom: 16px; }
+
+  .story-text p:last-child { margin-bottom: 0; }
 
   .story-text h2 { font-size: 36px; font-weight: 800; margin-bottom: 24px; }
 
   .story-text p { color: var(--muted); margin-bottom: 16px; }
-
-  .story-divider {
-    height: 1px;
-    background: var(--border);
-    margin-top: 40px;
-    margin-bottom: 40px;
-  }
 
   /* ---------- CRED / NUMBERED CARDS ---------- */
   .cred { background: var(--bg-soft); }
@@ -771,7 +774,7 @@
 
   /* ---------- CTA FINAL ---------- */
   .cta-final {
-    background: var(--dark);
+    background: var(--bg);
     text-align: center;
   }
 
@@ -785,10 +788,10 @@
     flex-shrink: 0;
   }
 
-  .cta-final h2 { font-size: 40px; font-weight: 800; color: #fff; margin-bottom: 20px; }
+  .cta-final h2 { font-size: 40px; font-weight: 800; margin-bottom: 20px; }
 
   .cta-final > .wrap > p {
-    color: var(--muted-light);
+    color: var(--muted);
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 32px;
@@ -803,7 +806,8 @@
   }
 
   .step-card {
-    border: 1px solid var(--border-dark);
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
     border-radius: 8px;
     padding: 32px 24px;
   }
@@ -817,23 +821,9 @@
     margin-bottom: 16px;
   }
 
-  .step-card h3 { color: #fff; font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+  .step-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
 
-  .step-card p { color: var(--muted-light); font-size: 14px; }
-
-  /* ---------- WARNING ---------- */
-  .warning { background: var(--bg); }
-
-  .warning-content { max-width: 720px; text-align: center; }
-
-  .warning-content h2 { font-size: 32px; font-weight: 800; margin-bottom: 24px; }
-
-  .warning-content p {
-    color: var(--muted);
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 16px;
-  }
+  .step-card p { color: var(--muted); font-size: 14px; }
 
   /* ---------- FOOTER ---------- */
   footer {
@@ -947,7 +937,7 @@
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 1100px) {
     .hero h1 { font-size: 48px; }
-    .story-row { gap: 40px; }
+    .story-grid { gap: 40px; }
     .num-grid { grid-template-columns: repeat(2, 1fr); }
     .benefits-grid { grid-template-columns: repeat(2, 1fr); }
     .tst-grid { grid-template-columns: 1fr; }
@@ -971,10 +961,9 @@
     .hero-photo { height: 200px; }
     .stats-bar { grid-template-columns: 1fr; gap: 20px; padding-bottom: 32px; margin-bottom: 32px; }
     .section-head h2 { font-size: 28px; }
-    .story-row { grid-template-columns: 1fr; gap: 24px; }
-    .story-row .placeholder { min-height: 220px; }
-    .story-text h2 { font-size: 26px; }
-    .story-divider { margin-top: 32px; margin-bottom: 32px; }
+    .story-grid { grid-template-columns: 1fr; gap: 24px; }
+    .story-title h2 { font-size: 26px; }
+    .story-rule { margin-top: 20px; }
     .cred-top { grid-template-columns: 1fr; gap: 24px; }
     .cred-top h2 { font-size: 26px; }
     .num-grid { grid-template-columns: 1fr; }
@@ -995,7 +984,6 @@
     .form-row-2 { grid-template-columns: 1fr; }
     .cta-final h2 { font-size: 28px; }
     .steps { grid-template-columns: 1fr; }
-    .warning-content h2 { font-size: 24px; }
     .footer-top { grid-template-columns: 1fr; gap: 32px; }
     .footer-nav { justify-content: flex-start; }
     .footer-bottom { flex-direction: column; align-items: flex-start; }
@@ -1038,7 +1026,7 @@
 <section class="hero">
   <div class="wrap">
     <p class="eyebrow-line">Rent a car Kragujevac</p>
-    <h1>Auto stiže tebi na adresu <span class="accent">ti samo uzmeš ključeve</span></h1>
+    <h1>Iznajmi auto u Kragujevcu <span class="accent">bez odlaska po njega</span></h1>
     <p class="subtitle">Iznajmi vozilo od €35 do €85 dnevno, sa dostavom na tvoju adresu ili transferom do aerodroma. Bez čekanja u redu, bez sitnih slova.</p>
     <div class="hero-actions">
       <a href="#kontakt" class="btn">Rezerviši vozilo</a>
@@ -1100,31 +1088,17 @@
 </section>
 
 <section class="story">
-  <div class="wrap">
-    <div class="story-row">
-      <div class="placeholder" role="img" aria-label="Fotografija pokvarenog vozila ispred zgrade">
-        FOTOGRAFIJA POKVARENOG VOZILA
-      </div>
-      <div class="story-text">
-        <p class="eyebrow-line">Poznata situacija</p>
-        <h2>Auto ti se pokvario dan pre poslovnog puta</h2>
-        <p>Sedneš za volan, upališ, i ništa. Servis kaže tri dana. A ti sutra imaš sastanak u drugom gradu, ili gost sleće na aerodron i treba da ga preuzmeš.</p>
-        <p>Otvoriš Google, ukucaš "rent a car Kragujevac" i dobiješ desetine rezultata. Zoveš jednog, kaže da auto nije slobodan. Zoveš drugog, kaže da moraš lično da dođeš po njega na drugi kraj grada, taman kad ti vreme najviše fali.</p>
-        <p>Treći ti pošalje cenovnik pun sitnih slova o depozitu, gorivu i kilometraži, pa ne znaš na kraju koliko zapravo plaćaš.</p>
-      </div>
+  <div class="wrap story-grid">
+    <div class="story-title">
+      <p class="eyebrow-line">Poznata situacija</p>
+      <h2>Auto ti se pokvario dan pre poslovnog puta, a rešenje je jedan poziv</h2>
+      <span class="story-rule"></span>
     </div>
-    <div class="story-divider"></div>
-    <div class="story-row">
-      <div class="placeholder" role="img" aria-label="Fotografija predaje ključeva klijentu ispred vozila">
-        FOTOGRAFIJA PREDAJE KLJUČEVA KLIJENTU
-      </div>
-      <div class="story-text">
-        <p class="eyebrow-line">Rešenje</p>
-        <h2>Pozoveš, dogovoriš se, vozilo ti stiže na adresu</h2>
-        <p>Kod nas jedan poziv rešava stvar. Kažeš kad ti treba vozilo, gde si, i dokle ti treba - dan, nedelju ili mesec. Mi ti vozača dovezemo auto na adresu koju kažeš, u dogovoreno vreme.</p>
-        <p>Ako sleće ti gost ili ti samolet, čekamo te na aerodromu i vozimo te dalje ili ti predajemo ključeve na licu mesta.</p>
-        <p>Cena je jasna pre nego što potpišeš bilo šta - od €35 do €85 po danu, zavisno od modela koji ti odgovara.</p>
-      </div>
+    <div class="story-text">
+      <p>Sedneš za volan, upališ, i ništa. Servis kaže tri dana. A ti sutra imaš sastanak u drugom gradu, ili gost sleće na aerodron i treba da ga preuzmeš.</p>
+      <p>Otvoriš Google, ukucaš "rent a car Kragujevac" i dobiješ desetine rezultata. Zoveš jednog, kaže da auto nije slobodan. Zoveš drugog, kaže da moraš lično da dođeš po njega na drugi kraj grada, taman kad ti vreme najviše fali. Treći ti pošalje cenovnik pun sitnih slova o depozitu, gorivu i kilometraži, pa ne znaš na kraju koliko zapravo plaćaš.</p>
+      <p>Kod nas jedan poziv rešava stvar. Kažeš kad ti treba vozilo, gde si, i dokle ti treba - dan, nedelju ili mesec. Mi ti vozača dovezemo auto na adresu koju kažeš, u dogovoreno vreme. Ako sleće ti gost ili ti samolet, čekamo te na aerodromu i vozimo te dalje ili ti predajemo ključeve na licu mesta.</p>
+      <p>Cena je jasna pre nego što potpišeš bilo šta - od €35 do €85 po danu, zavisno od modela koji ti odgovara.</p>
     </div>
   </div>
 </section>
@@ -1220,7 +1194,7 @@
       <blockquote class="tst-main">
         <div class="tst-mark">&ldquo;</div>
         <p>Poslali su vozilo tačno na vreme, ključevi predati ispred zgrade. Nisam morao nigde da idem.</p>
-        <div class="tst-name">Google recenzija, korisnik IM Rent a Car</div>
+        <div class="tst-name">Miloš J., Google recenzija</div>
       </blockquote>
       <div class="tst-side">
         <div class="tst-score">
@@ -1232,7 +1206,7 @@
         </div>
         <blockquote class="tst-small">
           <p>&ldquo;Cena je bila ista kao što su rekli na telefonu, bez iznenađenja na kraju.&rdquo;</p>
-          <div class="tst-name">Google recenzija, korisnik IM Rent a Car</div>
+          <div class="tst-name">Ana P., Google recenzija</div>
         </blockquote>
       </div>
     </div>
@@ -1320,16 +1294,6 @@
         <p>Na adresu ili na aerodrom, u dogovoreno vreme, spremno za vožnju.</p>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="warning">
-  <div class="wrap warning-content">
-    <p class="eyebrow-line center">Ako odložiš</p>
-    <h2>Za šest meseci, isti poziv u poslednji čas</h2>
-    <p>Ako ništa ne promeniš, sledeći put kad ti auto otkaže ili ti gost najavi dolazak dan unapred, opet ćeš tražiti rešenje u žurbi.</p>
-    <p>Isto toliko vremena potrošićeš na pozive po firmama koje ti ne dižu slušalicu ili ti daju cenu tek kad dođeš lično.</p>
-    <p>Sačuvaj naš broj sada, dok imaš vremena da razmisliš, ne kad ti već gori pod nogama.</p>
   </div>
 </section>
 
