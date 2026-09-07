@@ -10,12 +10,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #103c64;
-    --primary-dark: #0b2b49;
-    --bg: #faf9f7;
+    --accent: #f0921e;
+    --accent-dark: #d67c0f;
+    --dark: #0b2438;
+    --dark-2: #123049;
+    --navy: #103c64;
+    --bg: #ffffff;
+    --bg-soft: #f4f3f1;
     --text: #1c1c1c;
     --muted: #5a5f66;
-    --border: #e2e2e0;
+    --muted-light: #a8b6c4;
+    --border: #e3e3e1;
+    --border-dark: #23415a;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,35 +33,81 @@
     color: var(--text);
     background: var(--bg);
     line-height: 1.6;
-    font-size: 17px;
+    font-size: 16px;
     overflow-x: hidden;
   }
 
-  h1, h2, h3 {
+  h1, h2, h3, h4 {
     font-family: 'Montserrat', sans-serif;
-    color: var(--primary);
-    line-height: 1.2;
+    line-height: 1.1;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
   }
 
   .wrap {
     max-width: 1280px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
     padding-left: 24px;
     padding-right: 24px;
   }
 
   p { max-width: 65ch; }
 
-  a { text-decoration: none; }
+  a { text-decoration: none; color: inherit; }
 
   img { max-width: 100%; display: block; }
 
-  /* NAVBAR */
+  ul { list-style: none; }
+
+  /* ---------- BUTTONS ---------- */
+  .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.2;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .btn:hover { background: var(--accent-dark); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  .btn-ghost .circle {
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .btn-ghost:hover .circle { border-color: var(--accent); }
+
+  /* ---------- NAVBAR ---------- */
   header {
     position: sticky;
     top: 0;
-    background: #fff;
-    border-bottom: 1px solid var(--border);
+    background: var(--dark);
+    border-bottom: 1px solid var(--border-dark);
     z-index: 100;
   }
 
@@ -70,19 +122,18 @@
   .logo-group {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
   }
 
-  .logo-group img {
-    height: 40px;
-    width: auto;
-  }
+  .logo-group img { height: 40px; width: auto; }
 
   .logo-text {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 18px;
-    color: var(--primary);
+    font-weight: 800;
+    font-size: 16px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
   }
 
   .nav-links {
@@ -92,58 +143,51 @@
   }
 
   .nav-links a:not(.btn) {
-    color: var(--text);
-    font-weight: 600;
-    font-size: 15px;
-  }
-
-  .btn {
-    display: inline-block;
-    background: var(--primary);
     color: #fff;
-    padding: 13px 26px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 15px;
-    border: none;
-    cursor: pointer;
-    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
 
-  .btn:hover { background: var(--primary-dark); }
+  .nav-links a:not(.btn):hover { color: var(--accent); }
+
+  .nav-links .btn { padding: 12px 24px; }
 
   .hamburger {
     display: none;
     flex-direction: column;
-    gap: 5px;
+    gap: 4px;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 6px;
+    padding: 8px;
   }
 
   .hamburger span {
-    width: 26px;
-    height: 3px;
-    background: var(--primary);
+    width: 24px;
+    height: 2px;
+    background: #fff;
     display: block;
-    border-radius: 2px;
   }
 
   .mobile-menu {
     display: none;
     flex-direction: column;
-    background: #fff;
-    border-top: 1px solid var(--border);
+    background: var(--dark);
+    border-top: 1px solid var(--border-dark);
   }
 
   .mobile-menu.open { display: flex; }
 
   .mobile-menu a {
     padding: 16px 24px;
-    border-bottom: 1px solid var(--border);
-    color: var(--text);
+    border-bottom: 1px solid var(--border-dark);
+    color: #fff;
     font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.04em;
   }
 
   .mobile-menu .btn {
@@ -151,274 +195,419 @@
     text-align: center;
   }
 
-  /* SECTIONS */
+  /* ---------- SECTION BASICS ---------- */
   section {
     padding-top: 96px;
     padding-bottom: 96px;
-    border-bottom: 1px solid var(--border);
   }
 
-  section:last-of-type { border-bottom: none; }
-
   .eyebrow {
-    color: var(--primary);
+    color: var(--accent);
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 0.08em;
+    font-size: 13px;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     margin-bottom: 16px;
   }
 
-  /* HERO */
-  .hero {
-    padding-top: 72px;
-    padding-bottom: 88px;
-    border-bottom: 1px solid var(--border);
+  .eyebrow-line {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--accent);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
   }
 
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 48px;
+  .eyebrow-line::before {
+    content: "";
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .eyebrow-line.center { justify-content: center; }
+
+  .eyebrow-line.center::after {
+    content: "";
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .section-head { text-align: center; margin-bottom: 56px; }
+
+  .section-head h2 { font-size: 40px; font-weight: 800; }
+
+  .section-head p {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    color: var(--muted);
+  }
+
+  .placeholder {
+    background: #dedcd8;
+    border: 1px solid var(--border);
+    color: #6d6d69;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: flex;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    border-radius: 8px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    background: linear-gradient(180deg, var(--dark) 0%, var(--dark) 72%, #1b405d 88%, var(--bg-soft) 100%);
+    padding-top: 72px;
+    padding-bottom: 96px;
+    text-align: center;
+  }
+
+  .hero .eyebrow-line { justify-content: center; }
+
+  .hero .eyebrow-line::after {
+    content: "";
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    flex-shrink: 0;
   }
 
   .hero h1 {
-    font-size: 52px;
+    font-size: 60px;
     font-weight: 800;
+    color: #fff;
     margin-bottom: 24px;
+    max-width: 16ch;
+    margin-left: auto;
+    margin-right: auto;
   }
+
+  .hero h1 .accent { color: var(--accent); display: block; }
 
   .hero .subtitle {
-    font-size: 19px;
-    color: var(--muted);
+    font-size: 17px;
+    color: var(--muted-light);
     margin-bottom: 32px;
-    max-width: 52ch;
+    max-width: 56ch;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .hero-stats {
+  .hero-actions {
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 32px;
-    margin-top: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
   }
 
-  .hero-stat-num {
+  .hero-photo {
+    height: 360px;
+    background: #12314a;
+    border: 1px solid rgba(255,255,255,0.14);
+    color: #93a7b8;
+  }
+
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+  }
+
+  .stat-num {
     font-family: 'Montserrat', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 26ch;
+  }
+
+  /* ---------- FORM BAND ---------- */
+  .band { background: var(--bg-soft); padding-top: 64px; padding-bottom: 96px; }
+
+  .band-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .band-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .band-card .placeholder { flex: 1; min-height: 160px; }
+
+  .band-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .band-stat .big {
+    font-family: 'Montserrat', sans-serif;
+    white-space: nowrap;
+    font-size: 44px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .band-stat .txt {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 22ch;
+  }
+
+  .form-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 40px;
+  }
+
+  .form-card h2 {
     font-size: 26px;
     font-weight: 800;
-    color: var(--primary);
+    margin-bottom: 12px;
   }
 
-  .hero-stat-label {
-    font-size: 13px;
+  .form-card h2 .hl {
+    background: var(--accent);
+    color: #fff;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 4px;
+  }
+
+  .form-card .form-sub {
     color: var(--muted);
-  }
-
-  .hero-img-placeholder {
-    background: #e4e4e2;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    aspect-ratio: 4/3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--muted);
-    font-weight: 600;
-    font-size: 14px;
-    text-align: center;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  /* PROBLEM */
-  .problem-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 56px;
-    align-items: center;
-  }
-
-  .problem-img-placeholder {
-    background: #e4e4e2;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    aspect-ratio: 4/3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--muted);
-    font-weight: 600;
-    font-size: 14px;
-    text-align: center;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .problem h2 {
-    font-size: 34px;
+    font-size: 15px;
     margin-bottom: 24px;
   }
 
-  .problem p {
-    color: var(--text);
-    margin-bottom: 18px;
-    max-width: 65ch;
-  }
-
-  /* SOLUTION */
-  .solution-grid {
+  .form-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 56px;
-    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 12px;
   }
 
-  .solution h2 { font-size: 34px; margin-bottom: 20px; }
+  .form-row-2 {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 12px;
+  }
 
-  .solution p { margin-bottom: 16px; color: var(--text); }
-
-  .solution-img-placeholder {
-    background: #e4e4e2;
+  .form-card input,
+  .form-card select {
+    width: 100%;
+    padding: 14px 16px;
     border: 1px solid var(--border);
     border-radius: 8px;
-    aspect-ratio: 4/3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--muted);
-    font-weight: 600;
-    font-size: 14px;
-    text-align: center;
-    padding-left: 16px;
-    padding-right: 16px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    background: #fff;
   }
 
-  /* CREDIBILITY */
-  .cred-grid {
+  .form-card input:focus,
+  .form-card select:focus { outline: 2px solid var(--accent); outline-offset: 0; }
+
+  .form-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 16px;
+  }
+
+  /* ---------- TWO COLUMN TEXT + IMAGE ---------- */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .split h2 { font-size: 36px; font-weight: 800; margin-bottom: 24px; }
+
+  .split p { color: var(--muted); margin-bottom: 16px; }
+
+  .split .placeholder { min-height: 400px; }
+
+  .problem { background: var(--bg); }
+
+  .solution { background: var(--bg-soft); }
+
+  /* ---------- CRED / NUMBERED CARDS ---------- */
+  .cred { background: var(--bg); }
+
+  .cred-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+    margin-bottom: 56px;
+  }
+
+  .cred-top h2 { font-size: 36px; font-weight: 800; }
+
+  .cred-top p { color: var(--muted); }
+
+  .num-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
-    margin-top: 40px;
   }
 
-  .cred-item {
+  .num-card {
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding-top: 28px;
-    padding-bottom: 28px;
-    padding-left: 24px;
-    padding-right: 24px;
-    text-align: center;
+    padding: 32px 24px;
+    background: #fff;
   }
 
-  .cred-item svg { margin: 0 auto 16px auto; display: block; }
-
-  .cred-item .num {
+  .num-card .num {
     font-family: 'Montserrat', sans-serif;
+    font-size: 40px;
     font-weight: 800;
-    font-size: 22px;
-    color: var(--primary);
-    margin-bottom: 6px;
+    color: var(--text);
+    display: block;
+    margin-bottom: 16px;
+    line-height: 1;
   }
 
-  .cred-item .label {
+  .num-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .num-card p {
     font-size: 14px;
     color: var(--muted);
   }
 
-  .cred h2 { font-size: 34px; margin-bottom: 8px; }
-  .cred > .wrap > p { color: var(--muted); }
+  .num-card .rule {
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    margin-top: 24px;
+  }
 
-  /* BENEFITS */
-  .benefits h2 { font-size: 34px; margin-bottom: 40px; text-align: center; }
+  .num-card.is-active {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .num-card.is-active .num,
+  .num-card.is-active h3,
+  .num-card.is-active p { color: #fff; }
+
+  .num-card.is-active .rule { background: #fff; }
+
+  /* ---------- BENEFITS ---------- */
+  .benefits { background: var(--bg-soft); }
 
   .benefits-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+    gap: 24px;
   }
 
   .benefit-card {
+    background: #fff;
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding-top: 32px;
-    padding-bottom: 32px;
-    padding-left: 28px;
-    padding-right: 28px;
+    padding: 32px;
   }
 
   .benefit-card svg { margin-bottom: 20px; }
 
-  .benefit-card h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
+  .benefit-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
 
-  .benefit-card p {
-    color: var(--muted);
-    font-size: 15px;
-  }
+  .benefit-card p { font-size: 14px; color: var(--muted); }
 
-  /* PROOF */
-  .proof h2 { font-size: 34px; margin-bottom: 40px; text-align: center; }
+  /* ---------- PROOF ---------- */
+  .proof { background: var(--bg); }
 
   .proof-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 32px;
-    align-items: stretch;
+    grid-template-columns: 0.8fr 1fr 1fr;
+    gap: 24px;
   }
 
   .rating-card {
-    border: 1px solid var(--border);
+    background: var(--dark);
     border-radius: 8px;
-    padding: 32px;
+    padding: 40px 32px;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
 
   .rating-num {
     font-family: 'Montserrat', sans-serif;
-    font-size: 44px;
+    font-size: 48px;
     font-weight: 800;
-    color: var(--primary);
+    color: var(--accent);
+    line-height: 1;
   }
 
-  .rating-stars { color: var(--primary); font-size: 20px; margin: 8px 0; }
+  .rating-stars { color: var(--accent); font-size: 20px; letter-spacing: 4px; margin-top: 12px; }
 
-  .rating-sub { color: var(--muted); font-size: 14px; }
+  .rating-sub { color: var(--muted-light); font-size: 14px; margin-top: 12px; }
 
   .testimonial-card {
+    background: #fff;
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 32px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
 
-  .testimonial-card p {
-    font-style: italic;
-    margin-bottom: 16px;
-  }
+  .testimonial-card p { font-size: 16px; margin-bottom: 20px; }
 
   .testimonial-card .name {
-    font-weight: 700;
-    color: var(--primary);
-    font-size: 14px;
+    font-size: 13px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
   }
 
-  /* OFFER */
-  .offer {
-    background: var(--primary);
-    color: #fff;
-    border-bottom: none;
-  }
-
-  .offer h2 { color: #fff; font-size: 34px; margin-bottom: 16px; }
-  .offer .lead { color: #cdd8e4; margin-bottom: 40px; max-width: 65ch; }
+  /* ---------- OFFER / CAR CARDS ---------- */
+  .offer { background: var(--bg-soft); }
 
   .offer-grid {
     display: grid;
@@ -428,203 +617,281 @@
 
   .offer-card {
     background: #fff;
-    color: var(--text);
+    border: 1px solid var(--border);
     border-radius: 8px;
-    padding-top: 32px;
-    padding-bottom: 32px;
-    padding-left: 28px;
-    padding-right: 28px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
   }
 
-  .offer-card h3 {
-    font-size: 20px;
-    margin-bottom: 6px;
+  .offer-card .placeholder {
+    height: 220px;
+    border: none;
+    border-radius: 0;
   }
+
+  .offer-body { padding: 24px; display: flex; flex-direction: column; flex: 1; }
+
+  .offer-card h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
 
   .offer-card .price {
     font-family: 'Montserrat', sans-serif;
-    font-size: 28px;
-    font-weight: 800;
-    color: var(--primary);
-    margin-bottom: 16px;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--accent);
+    margin-bottom: 20px;
   }
 
-  .offer-card ul {
-    list-style: none;
-    margin-bottom: 24px;
-    flex-grow: 1;
-  }
+  .offer-card ul { margin-bottom: 24px; }
 
   .offer-card li {
-    padding-left: 22px;
-    position: relative;
-    margin-bottom: 10px;
     font-size: 14px;
     color: var(--muted);
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
   }
 
-  .offer-card li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 8px;
-    width: 10px;
-    height: 10px;
-    border-left: 2px solid var(--primary);
-    border-bottom: 2px solid var(--primary);
-    transform: rotate(-45deg);
-  }
+  .offer-card li:last-child { border-bottom: none; }
+
+  .offer-card .btn { margin-top: auto; text-align: center; padding: 12px 24px; }
 
   .offer-note {
     margin-top: 40px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.25);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
     border-radius: 8px;
+    background: #fff;
     padding: 24px;
   }
 
-  .offer-note p { color: #fff; margin: 0; max-width: none; }
+  .offer-note p { color: var(--muted); max-width: 80ch; }
 
-  /* CTA FINAL */
+  /* ---------- CTA FINAL ---------- */
   .cta-final {
+    background: var(--dark);
     text-align: center;
   }
 
-  .cta-final h2 { font-size: 34px; margin-bottom: 16px; }
-  .cta-final p { margin: 0 auto 32px auto; color: var(--muted); }
+  .cta-final .eyebrow-line { justify-content: center; }
 
-  .cta-final .steps {
+  .cta-final .eyebrow-line::after {
+    content: "";
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .cta-final h2 { font-size: 40px; font-weight: 800; color: #fff; margin-bottom: 20px; }
+
+  .cta-final > .wrap > p {
+    color: var(--muted-light);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 32px;
+  }
+
+  .steps {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    margin-top: 48px;
+    margin-top: 56px;
     text-align: left;
   }
 
   .step-card {
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-dark);
     border-radius: 8px;
-    padding: 24px;
+    padding: 32px 24px;
   }
 
   .step-num {
     font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
     font-weight: 800;
-    color: var(--primary);
-    font-size: 22px;
-    margin-bottom: 10px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 16px;
   }
 
-  .step-card h3 { font-size: 16px; margin-bottom: 6px; }
-  .step-card p { font-size: 14px; color: var(--muted); }
+  .step-card h3 { color: #fff; font-size: 16px; font-weight: 700; margin-bottom: 12px; }
 
-  /* WARNING */
-  .warning-content {
-    max-width: 700px;
+  .step-card p { color: var(--muted-light); font-size: 14px; }
+
+  /* ---------- WARNING ---------- */
+  .warning { background: var(--bg); }
+
+  .warning-content { max-width: 720px; text-align: center; }
+
+  .warning-content h2 { font-size: 32px; font-weight: 800; margin-bottom: 24px; }
+
+  .warning-content p {
+    color: var(--muted);
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
+    margin-bottom: 16px;
   }
 
-  .warning h2 { font-size: 30px; margin-bottom: 20px; }
-  .warning p { margin-bottom: 16px; }
-
-  /* FOOTER */
+  /* ---------- FOOTER ---------- */
   footer {
-    background: var(--primary-dark);
-    color: #cdd8e4;
+    background: var(--dark);
     padding-top: 64px;
-    padding-bottom: 40px;
+    padding-bottom: 32px;
   }
 
-  .footer-grid {
+  .footer-top {
     display: grid;
     grid-template-columns: 1.2fr 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
+    gap: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border-dark);
   }
 
   .footer-logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     margin-bottom: 16px;
   }
 
-  .footer-logo img { height: 36px; }
+  .footer-logo img { height: 40px; width: auto; }
 
   .footer-logo span {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
+    font-weight: 800;
     color: #fff;
-    font-size: 17px;
+    font-size: 16px;
+    text-transform: uppercase;
   }
 
-  footer h4 {
+  .footer-top p { color: var(--muted-light); font-size: 14px; max-width: 36ch; }
+
+  .footer-contact {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .footer-phone {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     color: #fff;
     font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
-    margin-bottom: 16px;
+    font-weight: 700;
+    font-size: 16px;
   }
 
-  footer ul { list-style: none; }
+  .footer-phone:hover { color: var(--accent); }
 
-  footer li { margin-bottom: 10px; }
+  .footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: center;
+    justify-content: flex-end;
+  }
 
-  footer a { color: #cdd8e4; font-size: 14px; }
-  footer a:hover { color: #fff; }
-
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.15);
-    padding-top: 24px;
+  .footer-nav a {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
     font-size: 13px;
-    color: #9fb2c5;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
+
+  .footer-nav a:hover { color: var(--accent); }
 
   .ps-box {
-    border-top: 1px solid rgba(255,255,255,0.15);
-    padding-top: 24px;
-    margin-top: 24px;
-    font-size: 14px;
-    color: #cdd8e4;
-    max-width: none;
+    margin-top: 32px;
+    border: 1px solid var(--border-dark);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 24px;
   }
+
+  .ps-box p { color: var(--muted-light); font-size: 14px; max-width: 90ch; }
 
   .ps-box strong { color: #fff; }
 
-  /* RESPONSIVE */
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+
+  .footer-bottom p { color: #6f8397; font-size: 12px; max-width: 70ch; }
+
+  .socials { display: flex; gap: 12px; }
+
+  .socials a {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .socials a:hover { border-color: var(--accent); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1100px) {
+    .hero h1 { font-size: 48px; }
+    .split { gap: 40px; }
+    .num-grid { grid-template-columns: repeat(2, 1fr); }
+    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+    .proof-grid { grid-template-columns: 1fr 1fr; }
+    .band-grid { grid-template-columns: 1fr; }
+  }
+
   @media (max-width: 991px) {
     .nav-links { display: none; }
     .hamburger { display: flex; }
-
-    .hero-grid { grid-template-columns: 1fr; }
-    .hero-img-placeholder { order: -1; }
-    .problem-grid { grid-template-columns: 1fr; }
-    .solution-grid { grid-template-columns: 1fr; }
-    .cred-grid { grid-template-columns: repeat(2, 1fr); }
-    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
-    .proof-grid { grid-template-columns: 1fr; }
-    .offer-grid { grid-template-columns: 1fr; }
-    .cta-final .steps { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
   }
 
   @media (max-width: 768px) {
     section { padding-top: 64px; padding-bottom: 64px; }
-    .hero { padding-top: 48px; padding-bottom: 56px; }
-    .hero h1 { font-size: 36px; }
-    .hero .subtitle { font-size: 17px; }
-    .problem h2, .solution h2, .cred h2, .benefits h2, .proof h2, .offer h2, .cta-final h2 { font-size: 26px; }
-    .hero-stats { gap: 20px; flex-wrap: wrap; }
-    .cred-grid { grid-template-columns: 1fr 1fr; }
+    .hero { padding-top: 48px; }
+    .band { padding-top: 48px; padding-bottom: 64px; }
+    .hero h1 { font-size: 32px; max-width: none; }
+    .hero .subtitle { font-size: 16px; }
+    .hero-actions { gap: 20px; flex-direction: column; }
+    .hero-actions .btn { width: 100%; text-align: center; }
+    .hero-photo { height: 200px; }
+    .stats-bar { grid-template-columns: 1fr; gap: 20px; padding-bottom: 32px; margin-bottom: 32px; }
+    .section-head h2 { font-size: 28px; }
+    .split { grid-template-columns: 1fr; }
+    .split h2 { font-size: 26px; }
+    .split .placeholder { min-height: 220px; }
+    .cred-top { grid-template-columns: 1fr; gap: 24px; }
+    .cred-top h2 { font-size: 26px; }
+    .num-grid { grid-template-columns: 1fr; }
     .benefits-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .proof-grid { grid-template-columns: 1fr; }
+    .offer-grid { grid-template-columns: 1fr; }
+    .form-card { padding: 24px; }
+    .form-card h2 { font-size: 22px; }
+    .form-row { grid-template-columns: 1fr; }
+    .form-row-2 { grid-template-columns: 1fr; }
+    .cta-final h2 { font-size: 28px; }
+    .steps { grid-template-columns: 1fr; }
+    .warning-content h2 { font-size: 24px; }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    .footer-nav { justify-content: flex-start; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
   }
 
   @media (max-width: 480px) {
-    .cred-grid { grid-template-columns: 1fr; }
+    .wrap { padding-left: 20px; padding-right: 20px; }
+    .stat-label { max-width: none; }
   }
 </style>
 </head>
@@ -657,36 +924,82 @@
 </header>
 
 <section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <p class="eyebrow">Rent a car Kragujevac</p>
-      <h1>Auto stiže tebi na adresu, ti samo uzmeš ključeve</h1>
-      <p class="subtitle">Iznajmi vozilo od €35 do €85 dnevno, sa dostavom na tvoju adresu ili transferom do aerodroma. Bez čekanja u redu, bez sitnih slova.</p>
-      <a href="#ponuda" class="btn">Rezerviši vozilo</a>
-      <div class="hero-stats">
-        <div>
-          <div class="hero-stat-num">4.8/5</div>
-          <div class="hero-stat-label">ocena na Google-u, 50 recenzija</div>
-        </div>
-        <div>
-          <div class="hero-stat-num">24/7</div>
-          <div class="hero-stat-label">podrška, svaki dan u godini</div>
-        </div>
+  <div class="wrap">
+    <p class="eyebrow-line">Rent a car Kragujevac</p>
+    <h1>Auto stiže tebi na adresu <span class="accent">ti samo uzmeš ključeve</span></h1>
+    <p class="subtitle">Iznajmi vozilo od €35 do €85 dnevno, sa dostavom na tvoju adresu ili transferom do aerodroma. Bez čekanja u redu, bez sitnih slova.</p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn">Rezerviši vozilo</a>
+      <a href="#ponuda" class="btn-ghost">
+        <span class="circle">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f0921e" stroke-width="2"><path d="M6 4l14 8-14 8z"/></svg>
+        </span>
+        Pogledaj cenovnik
+      </a>
+    </div>
+    <div class="hero-photo placeholder" role="img" aria-label="Fotografija voznog parka IM Rent a Car">
+      FOTOGRAFIJA VOZNOG PARKA
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="stats-bar">
+      <div>
+        <div class="stat-num">4.8/5</div>
+        <div class="stat-label">ocena na Google-u, 50 recenzija</div>
+      </div>
+      <div>
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">podrška, svaki dan u godini</div>
+      </div>
+      <div>
+        <div class="stat-num">€35</div>
+        <div class="stat-label">najniža dnevna cena najma</div>
       </div>
     </div>
-    <div class="hero-img-placeholder" role="img" aria-label="Fotografija vozila IM Rent a Car ispred kuće klijenta">
-      FOTOGRAFIJA VOZILA NA DOSTAVI
+  </div>
+  <div class="wrap band-grid">
+    <div class="band-card">
+      <div class="placeholder" role="img" aria-label="Fotografija vozila spremnog za dostavu na adresu">
+        FOTOGRAFIJA VOZILA ZA DOSTAVU
+      </div>
+      <div class="band-stat">
+        <span class="big">3 min</span>
+        <span class="txt">toliko traje rezervacija preko telefona ili forme</span>
+      </div>
+    </div>
+    <div class="form-card">
+      <h2>Ostavi kontakt i dobiješ <span class="hl">tačnu cenu</span> pre nego što bilo šta potvrdiš</h2>
+      <p class="form-sub">Kaži nam koliko dana ti treba vozilo i koja klasa ti odgovara, javimo se sa konačnim iznosom.</p>
+      <form action="#" method="post">
+        <div class="form-row">
+          <input type="text" name="ime" placeholder="Ime" aria-label="Ime" required>
+          <input type="tel" name="telefon" placeholder="Telefon" aria-label="Telefon" required>
+          <input type="email" name="email" placeholder="E-mail" aria-label="E-mail">
+        </div>
+        <div class="form-row-2">
+          <select name="klasa" aria-label="Klasa vozila">
+            <option>Ekonomična klasa, od €35 / dan</option>
+            <option>Srednja klasa, od €55 / dan</option>
+            <option>Viša klasa, od €85 / dan</option>
+          </select>
+          <button type="submit" class="btn">Pošalji upit</button>
+        </div>
+      </form>
+      <p class="form-note">Cena koju dobiješ je konačna. Bez sitnih slova o depozitu, gorivu i kilometraži.</p>
     </div>
   </div>
 </section>
 
 <section class="problem">
-  <div class="wrap problem-grid">
-    <div class="problem-img-placeholder" role="img" aria-label="Fotografija pokvarenog vozila ispred zgrade">
+  <div class="wrap split">
+    <div class="placeholder" role="img" aria-label="Fotografija pokvarenog vozila ispred zgrade">
       FOTOGRAFIJA POKVARENOG VOZILA
     </div>
-    <div class="problem-content">
-      <p class="eyebrow">Poznata situacija</p>
+    <div>
+      <p class="eyebrow-line">Poznata situacija</p>
       <h2>Auto ti se pokvario dan pre poslovnog puta</h2>
       <p>Sedneš za volan, upališ, i ništa. Servis kaže tri dana. A ti sutra imaš sastanak u drugom gradu, ili gost sleće na aerodron i treba da ga preuzmeš.</p>
       <p>Otvoriš Google, ukucaš "rent a car Kragujevac" i dobiješ desetine rezultata. Zoveš jednog, kaže da auto nije slobodan. Zoveš drugog, kaže da moraš lično da dođeš po njega na drugi kraj grada, taman kad ti vreme najviše fali.</p>
@@ -696,15 +1009,15 @@
 </section>
 
 <section class="solution">
-  <div class="wrap solution-grid">
+  <div class="wrap split">
     <div>
-      <p class="eyebrow">Rešenje</p>
+      <p class="eyebrow-line">Rešenje</p>
       <h2>Pozoveš, dogovoriš se, vozilo ti stiže na adresu</h2>
       <p>Kod nas jedan poziv rešava stvar. Kažeš kad ti treba vozilo, gde si, i dokle ti treba - dan, nedelju ili mesec. Mi ti vozača dovezemo auto na adresu koju kažeš, u dogovoreno vreme.</p>
       <p>Ako sleće ti gost ili ti samolet, čekamo te na aerodromu i vozimo te dalje ili ti predajemo ključeve na licu mesta.</p>
       <p>Cena je jasna pre nego što potpišeš bilo šta - od €35 do €85 po danu, zavisno od modela koji ti odgovara.</p>
     </div>
-    <div class="solution-img-placeholder" role="img" aria-label="Fotografija predaje ključeva klijentu ispred vozila">
+    <div class="placeholder" role="img" aria-label="Fotografija predaje ključeva klijentu ispred vozila">
       FOTOGRAFIJA PREDAJE KLJUČEVA KLIJENTU
     </div>
   </div>
@@ -712,66 +1025,78 @@
 
 <section class="cred">
   <div class="wrap">
-    <p class="eyebrow">Zašto baš mi</p>
-    <h2>Iza svakog vozila stoji iskustvo, ne samo cenovnik</h2>
-    <p>Radimo ovaj posao dugo i znamo šta poslovnom putniku, turisti ili nekome iz Kragujevca zapravo treba kad ostane bez auta.</p>
-    <div class="cred-grid">
-      <div class="cred-item">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#103c64" stroke-width="2"><path d="M3 12l2-5h14l2 5M5 12v6h14v-6M7 18v2M17 18v2"/></svg>
-        <div class="num">Bogat</div>
-        <div class="label">vozni park, različiti modeli i klase</div>
+    <div class="cred-top">
+      <div>
+        <p class="eyebrow-line">Zašto baš mi</p>
+        <h2>Iza svakog vozila stoji iskustvo, ne samo cenovnik</h2>
       </div>
-      <div class="cred-item">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#103c64" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-        <div class="num">24/7</div>
-        <div class="label">korisnička podrška, svaki dan</div>
+      <div>
+        <p>Radimo ovaj posao dugo i znamo šta poslovnom putniku, turisti ili nekome iz Kragujevca zapravo treba kad ostane bez auta.</p>
       </div>
-      <div class="cred-item">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#103c64" stroke-width="2"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
-        <div class="num">4.8/5</div>
-        <div class="label">prosečna ocena na Google-u</div>
-      </div>
-      <div class="cred-item">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#103c64" stroke-width="2"><path d="M4 12h16M4 6h16M4 18h10"/></svg>
-        <div class="num">Dugogodišnje</div>
-        <div class="label">iskustvo u iznajmljivanju vozila</div>
-      </div>
+    </div>
+    <div class="num-grid">
+      <article class="num-card">
+        <span class="num">01</span>
+        <h3>Bogat vozni park</h3>
+        <p>Različiti modeli i klase, od ekonomične do više, pa biraš vozilo koje odgovara prilici.</p>
+        <span class="rule"></span>
+      </article>
+      <article class="num-card is-active">
+        <span class="num">02</span>
+        <h3>Podrška 24/7</h3>
+        <p>Neko se javlja na telefon svaki dan u godini, i u ponoć kad se nešto desi na putu.</p>
+        <span class="rule"></span>
+      </article>
+      <article class="num-card">
+        <span class="num">03</span>
+        <h3>Ocena 4.8/5</h3>
+        <p>Prosečna ocena na Google-u, na osnovu 50 recenzija korisnika.</p>
+        <span class="rule"></span>
+      </article>
+      <article class="num-card">
+        <span class="num">04</span>
+        <h3>Dugogodišnje iskustvo</h3>
+        <p>Iznajmljivanje vozila radimo dugo, pa znamo kako da ti skratimo posao.</p>
+        <span class="rule"></span>
+      </article>
     </div>
   </div>
 </section>
 
 <section class="benefits">
   <div class="wrap">
-    <p class="eyebrow" style="text-align:center;max-width:none">Šta zapravo dobijaš</p>
-    <h2>Ne iznajmljuješ samo auto</h2>
+    <div class="section-head">
+      <p class="eyebrow-line center">Šta zapravo dobijaš</p>
+      <h2>Ne iznajmljuješ samo auto</h2>
+    </div>
     <div class="benefits-grid">
       <div class="benefit-card">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#103c64" stroke-width="2"><path d="M12 2v20M4 8l8-6 8 6"/></svg>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f0921e" stroke-width="2"><path d="M12 2v20M4 8l8-6 8 6"/></svg>
         <h3>Vreme koje ne trošiš na čekanje</h3>
         <p>Vozilo ti stiže tamo gde si, ne moraš da ideš po njega kroz grad.</p>
       </div>
       <div class="benefit-card">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#103c64" stroke-width="2"><path d="M3 3h18v14H3zM8 21h8M12 17v4"/></svg>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f0921e" stroke-width="2"><path d="M3 3h18v14H3zM8 21h8M12 17v4"/></svg>
         <h3>Miran dolazak gosta ili klijenta</h3>
         <p>Preuzimamo ga na aerodromu umesto tebe, ti se ne odvajaš od posla.</p>
       </div>
       <div class="benefit-card">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#103c64" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zM12 6v6l4 2"/></svg>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f0921e" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zM12 6v6l4 2"/></svg>
         <h3>Jasna cena od prvog poziva</h3>
         <p>Znaš tačno koliko plaćaš pre nego što uđeš u vozilo, bez sitnih slova.</p>
       </div>
       <div class="benefit-card">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#103c64" stroke-width="2"><path d="M22 16.92V21a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.8 19.8 0 011.12 4.18 2 2 0 013 2h4.09a2 2 0 012 1.72c.13.99.36 1.96.68 2.9a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.18-1.23a2 2 0 012.11-.45c.94.32 1.91.55 2.9.68A2 2 0 0122 16.92z"/></svg>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f0921e" stroke-width="2"><path d="M22 16.92V21a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.8 19.8 0 011.12 4.18 2 2 0 013 2h4.09a2 2 0 012 1.72c.13.99.36 1.96.68 2.9a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.18-1.23a2 2 0 012.11-.45c.94.32 1.91.55 2.9.68A2 2 0 0122 16.92z"/></svg>
         <h3>Neko na telefonu i u ponoć</h3>
         <p>Ako se nešto desi na putu, javljaš se nama, ne rešavaš problem sam.</p>
       </div>
       <div class="benefit-card">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#103c64" stroke-width="2"><path d="M4 4h16v16H4zM4 10h16M10 4v16"/></svg>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f0921e" stroke-width="2"><path d="M4 4h16v16H4zM4 10h16M10 4v16"/></svg>
         <h3>Vozilo koje odgovara prilici</h3>
         <p>Za sastanak, za porodični put ili za grad, biraš model koji ti stvarno treba.</p>
       </div>
       <div class="benefit-card">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#103c64" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f0921e" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
         <h3>Fleksibilnost bez pritiska</h3>
         <p>Produžiš ili skratiš najam prema tome kako se tvoj plan promeni.</p>
       </div>
@@ -781,8 +1106,10 @@
 
 <section class="proof" id="dokazi">
   <div class="wrap">
-    <p class="eyebrow" style="text-align:center;max-width:none">Dokazi</p>
-    <h2>Ono što drugi kažu kad nas ocene</h2>
+    <div class="section-head">
+      <p class="eyebrow-line center">Dokazi</p>
+      <h2>Ono što drugi kažu kad nas ocene</h2>
+    </div>
     <div class="proof-grid">
       <div class="rating-card">
         <div class="rating-num">4.8/5</div>
@@ -803,39 +1130,56 @@
 
 <section class="offer" id="ponuda">
   <div class="wrap">
-    <p class="eyebrow" style="color:#9fc0e0">Ponuda</p>
-    <h2>Biraš vozilo, mi rešavamo ostalo</h2>
-    <p class="lead">Cena zavisi od modela koji ti treba. Što duže iznajmljuješ, cena po danu ide dole - jer nama manje košta jedna duža rezervacija nego deset kratkih.</p>
+    <div class="section-head">
+      <p class="eyebrow-line center">Ponuda</p>
+      <h2>Biraš vozilo, mi rešavamo ostalo</h2>
+      <p>Cena zavisi od modela koji ti treba. Što duže iznajmljuješ, cena po danu ide dole - jer nama manje košta jedna duža rezervacija nego deset kratkih.</p>
+    </div>
     <div class="offer-grid">
       <div class="offer-card">
-        <h3>Ekonomična klasa</h3>
-        <div class="price">od €35 / dan</div>
-        <ul>
-          <li>Idealno za grad i kratke relacije</li>
-          <li>Dostava na adresu u Kragujevcu</li>
-          <li>Osiguranje uključeno</li>
-        </ul>
-        <a href="#kontakt" class="btn">Rezerviši ovo vozilo</a>
+        <div class="placeholder" role="img" aria-label="Fotografija vozila ekonomične klase">
+          FOTOGRAFIJA EKONOMIČNE KLASE
+        </div>
+        <div class="offer-body">
+          <h3>Ekonomična klasa</h3>
+          <div class="price">od €35 / dan</div>
+          <ul>
+            <li>Idealno za grad i kratke relacije</li>
+            <li>Dostava na adresu u Kragujevcu</li>
+            <li>Osiguranje uključeno</li>
+          </ul>
+          <a href="#kontakt" class="btn">Rezerviši ovo vozilo</a>
+        </div>
       </div>
       <div class="offer-card">
-        <h3>Srednja klasa</h3>
-        <div class="price">od €55 / dan</div>
-        <ul>
-          <li>Udobnije za poslovne puteve</li>
-          <li>Dostava na adresu ili aerodrom</li>
-          <li>Osiguranje uključeno</li>
-        </ul>
-        <a href="#kontakt" class="btn">Rezerviši ovo vozilo</a>
+        <div class="placeholder" role="img" aria-label="Fotografija vozila srednje klase">
+          FOTOGRAFIJA SREDNJE KLASE
+        </div>
+        <div class="offer-body">
+          <h3>Srednja klasa</h3>
+          <div class="price">od €55 / dan</div>
+          <ul>
+            <li>Udobnije za poslovne puteve</li>
+            <li>Dostava na adresu ili aerodrom</li>
+            <li>Osiguranje uključeno</li>
+          </ul>
+          <a href="#kontakt" class="btn">Rezerviši ovo vozilo</a>
+        </div>
       </div>
       <div class="offer-card">
-        <h3>Viša klasa</h3>
-        <div class="price">od €85 / dan</div>
-        <ul>
-          <li>Za sastanke i dočeke gostiju</li>
-          <li>Prioritetna dostava i transfer</li>
-          <li>Osiguranje uključeno</li>
-        </ul>
-        <a href="#kontakt" class="btn">Rezerviši ovo vozilo</a>
+        <div class="placeholder" role="img" aria-label="Fotografija vozila više klase">
+          FOTOGRAFIJA VIŠE KLASE
+        </div>
+        <div class="offer-body">
+          <h3>Viša klasa</h3>
+          <div class="price">od €85 / dan</div>
+          <ul>
+            <li>Za sastanke i dočeke gostiju</li>
+            <li>Prioritetna dostava i transfer</li>
+            <li>Osiguranje uključeno</li>
+          </ul>
+          <a href="#kontakt" class="btn">Rezerviši ovo vozilo</a>
+        </div>
       </div>
     </div>
     <div class="offer-note">
@@ -846,23 +1190,23 @@
 
 <section class="cta-final" id="kontakt">
   <div class="wrap">
-    <p class="eyebrow">Sledeći korak</p>
+    <p class="eyebrow-line">Sledeći korak</p>
     <h2>Pozovi ili popuni formu, vozilo stiže kad kažeš</h2>
     <p>Rezervacija traje tri minuta. Kažeš datum, lokaciju i model koji ti odgovara, mi potvrdimo termin i dovezemo vozilo.</p>
     <a href="#" class="btn">Rezerviši vozilo sada</a>
     <div class="steps">
       <div class="step-card">
-        <div class="step-num">1</div>
+        <div class="step-num">01</div>
         <h3>Javiš nam se</h3>
         <p>Telefonom ili preko forme na sajtu, kažeš kad i gde ti treba vozilo.</p>
       </div>
       <div class="step-card">
-        <div class="step-num">2</div>
+        <div class="step-num">02</div>
         <h3>Potvrdimo termin</h3>
         <p>Dogovorimo model, cenu i mesto dostave, sve pre nego što bilo šta platiš.</p>
       </div>
       <div class="step-card">
-        <div class="step-num">3</div>
+        <div class="step-num">03</div>
         <h3>Vozilo stiže tebi</h3>
         <p>Na adresu ili na aerodrom, u dogovoreno vreme, spremno za vožnju.</p>
       </div>
@@ -872,7 +1216,7 @@
 
 <section class="warning">
   <div class="wrap warning-content">
-    <p class="eyebrow" style="text-align:center;max-width:none">Ako odložiš</p>
+    <p class="eyebrow-line center">Ako odložiš</p>
     <h2>Za šest meseci, isti poziv u poslednji čas</h2>
     <p>Ako ništa ne promeniš, sledeći put kad ti auto otkaže ili ti gost najavi dolazak dan unapred, opet ćeš tražiti rešenje u žurbi.</p>
     <p>Isto toliko vremena potrošićeš na pozive po firmama koje ti ne dižu slušalicu ili ti daju cenu tek kad dođeš lično.</p>
@@ -882,36 +1226,43 @@
 
 <footer>
   <div class="wrap">
-    <div class="footer-grid">
+    <div class="footer-top">
       <div>
         <div class="footer-logo">
           <img src="assets/logo.png" alt="IM Rent a Car logo">
           <span>IM Rent a Car</span>
         </div>
-        <p style="color:#9fb2c5; font-size:14px;">Iznajmljivanje vozila u Kragujevcu, sa dostavom na adresu i transferom do aerodroma.</p>
+        <p>Iznajmljivanje vozila u Kragujevcu, sa dostavom na adresu i transferom do aerodroma.</p>
       </div>
-      <div>
-        <h4>Stranica</h4>
-        <ul>
-          <li><a href="#ponuda">Cenovnik</a></li>
-          <li><a href="#dokazi">Recenzije</a></li>
-          <li><a href="#kontakt">Kontakt</a></li>
-        </ul>
+      <div class="footer-contact">
+        <a href="tel:+381600000000" class="footer-phone">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f0921e" stroke-width="2"><path d="M22 16.92V21a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.8 19.8 0 011.12 4.18 2 2 0 013 2h4.09a2 2 0 012 1.72c.13.99.36 1.96.68 2.9a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.18-1.23a2 2 0 012.11-.45c.94.32 1.91.55 2.9.68A2 2 0 0122 16.92z"/></svg>
+          +381 60 000 0000
+        </a>
+        <a href="#kontakt" class="btn">Rezerviši vozilo</a>
       </div>
-      <div>
-        <h4>Kontakt</h4>
-        <ul>
-          <li><a href="#">Kragujevac, Srbija</a></li>
-          <li><a href="#">+381 60 000 0000</a></li>
-          <li><a href="#">info@imrentacar.rs</a></li>
-        </ul>
-      </div>
+      <nav class="footer-nav">
+        <a href="#ponuda">Cenovnik</a>
+        <a href="#dokazi">Recenzije</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
     </div>
     <div class="ps-box">
       <p><strong>P.S.</strong> Vozila od €35 do €85 po danu, sa dostavom na adresu i popustom kad iznajmljuješ na više dana - javi se sada dok imaš vremena da biraš model, ne kad ti već zatreba za sat vremena. <a href="#ponuda" style="color:#fff; text-decoration:underline;">Rezerviši vozilo ovde.</a></p>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2024 IM Rent a Car. Sva prava zadržana.</p>
+      <p>&copy; 2024 IM Rent a Car, Kragujevac, Srbija. Sva prava zadržana.</p>
+      <div class="socials">
+        <a href="#" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a8b6c4" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a8b6c4" stroke-width="2"><path d="M15 2h-3a5 5 0 00-5 5v3H4v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="#" aria-label="Viber">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a8b6c4" stroke-width="2"><path d="M21 15.46v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.8 19.8 0 011.12 2.76 2 2 0 013.1.58h3a2 2 0 012 1.72c.13.99.36 1.96.68 2.9a2 2 0 01-.45 2.11L7.09 8.51a16 16 0 006 6l1.2-1.24a2 2 0 012.11-.45c.94.32 1.91.55 2.9.68a2 2 0 011.7 1.96z"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </footer>
