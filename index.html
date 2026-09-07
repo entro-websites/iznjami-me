@@ -431,30 +431,112 @@
   /* ---------- PROBLEM + REŠENJE ---------- */
   .story { background: var(--bg); }
 
-  .story-grid {
+  .cmp-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: start;
+    gap: 24px;
   }
 
-  .story-title h2 { font-size: 40px; font-weight: 800; }
+  .cmp-card {
+    border-radius: 12px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+  }
 
-  .story-rule {
-    display: block;
-    width: 64px;
-    height: 2px;
+  .cmp-card.is-problem {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+  }
+
+  .cmp-card.is-solution {
+    background: #fff6ea;
+    border: 1px solid #f4d3aa;
+  }
+
+  .cmp-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .cmp-head h3 { font-size: 28px; font-weight: 800; }
+
+  .pill {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border-radius: 999px;
+  }
+
+  .pill.muted {
+    background: #fff;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .pill.accent {
     background: var(--accent);
-    margin-top: 32px;
+    color: #fff;
   }
 
-  .story-text p { color: var(--muted); margin-bottom: 16px; }
+  .cmp-lead {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 24px;
+    max-width: 42ch;
+  }
 
-  .story-text p:last-child { margin-bottom: 0; }
+  .cmp-list { margin-bottom: 32px; }
 
-  .story-text h2 { font-size: 36px; font-weight: 800; margin-bottom: 24px; }
+  .cmp-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 
-  .story-text p { color: var(--muted); margin-bottom: 16px; }
+  .cmp-list li svg { flex-shrink: 0; margin-top: 4px; }
+
+  .cmp-foot {
+    margin-top: auto;
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .cmp-card.is-solution .cmp-foot { border-top-color: #f4d3aa; }
+
+  .cmp-price {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .cmp-price span {
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  .cmp-card.is-problem .cmp-price { color: var(--muted); }
+
+  .cmp-card.is-solution .cmp-price { color: var(--accent); }
 
   /* ---------- CRED / NUMBERED CARDS ---------- */
   .cred { background: var(--bg-soft); }
@@ -937,7 +1019,7 @@
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 1100px) {
     .hero h1 { font-size: 48px; }
-    .story-grid { gap: 40px; }
+    .cmp-card { padding: 32px; }
     .num-grid { grid-template-columns: repeat(2, 1fr); }
     .benefits-grid { grid-template-columns: repeat(2, 1fr); }
     .tst-grid { grid-template-columns: 1fr; }
@@ -961,9 +1043,11 @@
     .hero-photo { height: 200px; }
     .stats-bar { grid-template-columns: 1fr; gap: 20px; padding-bottom: 32px; margin-bottom: 32px; }
     .section-head h2 { font-size: 28px; }
-    .story-grid { grid-template-columns: 1fr; gap: 24px; }
-    .story-title h2 { font-size: 26px; }
-    .story-rule { margin-top: 20px; }
+    .cmp-grid { grid-template-columns: 1fr; }
+    .cmp-card { padding: 24px; }
+    .cmp-head h3 { font-size: 22px; }
+    .cmp-foot { flex-direction: column; align-items: flex-start; }
+    .cmp-foot .btn { width: 100%; text-align: center; }
     .cred-top { grid-template-columns: 1fr; gap: 24px; }
     .cred-top h2 { font-size: 26px; }
     .num-grid { grid-template-columns: 1fr; }
@@ -1088,17 +1172,46 @@
 </section>
 
 <section class="story">
-  <div class="wrap story-grid">
-    <div class="story-title">
-      <p class="eyebrow-line">Poznata situacija</p>
-      <h2>Auto ti se pokvario dan pre poslovnog puta, a rešenje je jedan poziv</h2>
-      <span class="story-rule"></span>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow-line center">Problem i rešenje</p>
+      <h2>Auto ti se pokvario dan pre poslovnog puta</h2>
+      <p>Ovako to obično ide kad tražiš vozilo u žurbi, i ovako ide kod nas.</p>
     </div>
-    <div class="story-text">
-      <p>Sedneš za volan, upališ, i ništa. Servis kaže tri dana. A ti sutra imaš sastanak u drugom gradu, ili gost sleće na aerodron i treba da ga preuzmeš.</p>
-      <p>Otvoriš Google, ukucaš "rent a car Kragujevac" i dobiješ desetine rezultata. Zoveš jednog, kaže da auto nije slobodan. Zoveš drugog, kaže da moraš lično da dođeš po njega na drugi kraj grada, taman kad ti vreme najviše fali. Treći ti pošalje cenovnik pun sitnih slova o depozitu, gorivu i kilometraži, pa ne znaš na kraju koliko zapravo plaćaš.</p>
-      <p>Kod nas jedan poziv rešava stvar. Kažeš kad ti treba vozilo, gde si, i dokle ti treba - dan, nedelju ili mesec. Mi ti vozača dovezemo auto na adresu koju kažeš, u dogovoreno vreme. Ako sleće ti gost ili ti samolet, čekamo te na aerodromu i vozimo te dalje ili ti predajemo ključeve na licu mesta.</p>
-      <p>Cena je jasna pre nego što potpišeš bilo šta - od €35 do €85 po danu, zavisno od modela koji ti odgovara.</p>
+    <div class="cmp-grid">
+      <article class="cmp-card is-problem">
+        <div class="cmp-head">
+          <h3>Bez nas</h3>
+          <span class="pill muted">Problem</span>
+        </div>
+        <p class="cmp-lead">Sedneš za volan, upališ, i ništa. Servis kaže tri dana, a ti sutra imaš sastanak u drugom gradu ili gost sleće na aerodrom.</p>
+        <ul class="cmp-list">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b9199" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>Zoveš firmu po firmu, a auto nije slobodan</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b9199" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>Ideš na drugi kraj grada po vozilo, taman kad ti vreme najviše fali</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b9199" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>Cenovnik pun sitnih slova o depozitu, gorivu i kilometraži</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b9199" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>Ne znaš koliko zapravo plaćaš dok ne dođeš lično</li>
+        </ul>
+        <div class="cmp-foot">
+          <div class="cmp-price">3 dana<span>bez vozila, dok čekaš servis</span></div>
+        </div>
+      </article>
+      <article class="cmp-card is-solution">
+        <div class="cmp-head">
+          <h3>Sa nama</h3>
+          <span class="pill accent">Rešenje</span>
+        </div>
+        <p class="cmp-lead">Jedan poziv rešava stvar. Kažeš kad ti treba vozilo, gde si i dokle ti treba - dan, nedelju ili mesec.</p>
+        <ul class="cmp-list">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f0921e" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Dovezemo ti auto na adresu koju kažeš, u dogovoreno vreme</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f0921e" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Čekamo te ili tvog gosta na aerodromu i predajemo ključeve na licu mesta</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f0921e" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Cena je jasna pre nego što potpišeš bilo šta</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f0921e" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Produžiš ili skratiš najam kako ti se plan promeni</li>
+        </ul>
+        <div class="cmp-foot">
+          <div class="cmp-price">od €35<span>po danu, zavisno od modela</span></div>
+          <a href="#kontakt" class="btn">Rezerviši vozilo</a>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -1324,7 +1437,7 @@
       <p><strong>P.S.</strong> Vozila od €35 do €85 po danu, sa dostavom na adresu i popustom kad iznajmljuješ na više dana - javi se sada dok imaš vremena da biraš model, ne kad ti već zatreba za sat vremena. <a href="#ponuda" style="color:#fff; text-decoration:underline;">Rezerviši vozilo ovde.</a></p>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2024 IM Rent a Car, Kragujevac, Srbija. Sva prava zadržana.</p>
+      <p>&copy; 2026 IM Rent a Car, Kragujevac, Srbija. Sva prava zadržana.</p>
       <div class="socials">
         <a href="#" aria-label="Instagram">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a8b6c4" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1"/></svg>
